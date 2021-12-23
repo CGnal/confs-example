@@ -1,0 +1,14 @@
+Models: !!python/object:cgnal.config.yaml.domain.Models
+  path: !joinPath ["this", "is", "the", "path","to","model"]
+
+MongoDb: !!python/object:cgnal.config.yaml.domain.MongoDb
+  host: !!str "localhost"
+  port: !!int 27017
+
+  credentials: !!python/object:cgnal.config.yaml.domain.Credentials
+    user: !!str "user"
+    pwd: !!str "password"
+
+  collections:
+    - users
+    - transactions

@@ -1,14 +1,15 @@
 from typing import List
+from cgnal.config import PathLike
 from pydantic import BaseModel
-
-class Credentials(BaseModel):
-    user: str
-    pwd: str
 
 # class Credentials(BaseModel):
 #     def __init__(self, user: str, pwd: str):
 #         self.user = user
 #         self.pwd = pwd
+
+class Credentials(BaseModel):
+    user: str
+    pwd: str
 
 class MongoDb(BaseModel):
     host: str
@@ -16,7 +17,9 @@ class MongoDb(BaseModel):
     credentials: Credentials
     collections: List[str]
 
-class DataConfig:
+class Models(BaseModel):
+    path: PathLike
 
-    def __init__(self, mongoDb: MongoDb):
-        self.mongoDb = mongoDb
+class AppConfig(BaseModel):
+    mongoDb: MongoDb
+    models: Models

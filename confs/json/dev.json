@@ -1,0 +1,17 @@
+{
+  "Models": {
+    "path": "/this/is/the/path/to/model"
+  },
+  "MongoDb": {
+    "host": "localhost",
+    "port": 27017,
+    "credentials": {
+      "user": "user",
+      "pwd": "password"
+    },
+    "collections": [
+      "users",
+      "transactions"
+    ]
+  }
+}

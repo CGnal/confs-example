@@ -1,0 +1,14 @@
+Models:
+  path: "/this/is/the/path/to/model"
+
+MongoDb:
+  host: !!str "localhost"
+  port: !!int 27017
+
+  credentials:
+    user: !!str "user"
+    pwd: !!str "password"
+
+  collections:
+    - users
+    - transactions

@@ -1,3 +1,7 @@
+from copy import deepcopy as copy
+from typing import Mapping
+from functools import reduce
+
 def union(*dicts: dict) -> dict:
     def __dict_merge(dct: dict, merge_dct: dict):
         """ Recursive dict merge. Inspired by :meth:``dict.update()``, instead of

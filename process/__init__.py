@@ -1,9 +1,9 @@
 from cgnal.logging import WithLogging, levels
-from cgnal.config.data import DataConfig
+from cgnal.config.domain import AppConfig
 
 class Process(WithLogging):
 
-    def __init__(self, dataConfig: DataConfig):
+    def __init__(self, dataConfig: AppConfig):
         self.logger.info(f"Inizializing Process")
         self.dataConfig = dataConfig
 
