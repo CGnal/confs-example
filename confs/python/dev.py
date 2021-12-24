@@ -9,7 +9,9 @@ credentials = Credentials(user="user", pwd="password")
 
 collections = ["users", "transactions"]
 
-mongoDb = MongoDb(host="localhost", port=27017, credentials=credentials, collections=collections)
+mongoDb = MongoDb(
+    host="localhost", port=27017,
+    credentials=credentials, collections=collections
+)
 
 dataConfig = AppConfig(mongoDb=mongoDb, models=Models(path=path))
-

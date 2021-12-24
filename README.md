@@ -1,6 +1,12 @@
-# logging-example
+# confs-example
 
-Simple example and play-ground for trying out and testing logging configuration
+Simple example and play-ground for trying out and testing configuration systems based on
+the following formats:
+
+1. Python files
+2. *.INI configuration files
+3. *.Json configuration files
+4. *.YAML configuration files
 
 Exercise
 ========

@@ -1,15 +1,16 @@
-from cfg_load import load as load_yaml
 from logging import getLogger, basicConfig, config
 
-DEFAULT_LEVEL="INFO"
+from cfg_load import load as load_yaml  # type: ignore
+
+DEFAULT_LEVEL = "INFO"
 
 levels = {
-    "CRITICAL"	: 50 ,
-    "ERROR"	    : 40 ,
-    "WARNING"	: 30 ,
-    "INFO"	    : 20 ,
-    "DEBUG"	    : 10 ,
-    "NOTSET"	: 0
+    "CRITICAL": 50,
+    "ERROR": 40,
+    "WARNING": 30,
+    "INFO": 20,
+    "DEBUG": 10,
+    "NOTSET": 0
 }
 
 
@@ -22,7 +23,9 @@ class WithLogging:
 
         :return: default logger
         """
-        nameLogger = str(self.__class__).replace("<class '", "").replace("'>", "")
+        nameLogger = str(self.__class__) \
+            .replace("<class '", "") \
+            .replace("'>", "")
         return getLogger(nameLogger)
 
     def logResult(self, msg, level="INFO"):
@@ -32,6 +35,7 @@ class WithLogging:
             else:
                 self.logger.log(levels[level], msg(x))
             return x
+
         return wrap
 
 
@@ -101,7 +105,9 @@ def configFromFile(path_to_file):
     _, file_extension = os.path.splitext(path_to_file)
 
     if file_extension not in readers.keys():
-        raise NotImplementedError(f"Reader for file extention {file_extension} is not supported")
+        raise NotImplementedError(
+            f"Reader for file extention {file_extension} is not supported"
+        )
 
     return readers[file_extension](path_to_file)
 

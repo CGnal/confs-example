@@ -3,13 +3,15 @@ from cgnal.logging import configFromFile, getLogger
 configFromFile("logging.yaml")
 logger = getLogger("runner")
 
-from typing import List
-from process import Process
-from cgnal.config.domain import AppConfig, MongoDb, Credentials, Models
-from cgnal import union
-from cgnal.config import merge_confs
+from typing import Sequence  # noqa: E402
+from process import Process  # noqa: E402
+from cgnal.config.domain import AppConfig, MongoDb, Credentials, \
+    Models  # noqa: E402
+from cgnal import union  # noqa: E402
+from cgnal.config import merge_confs  # noqa: E402
 
-def read_ini(filenames: List[str]) -> AppConfig:
+
+def read_ini(filenames: Sequence[str]) -> AppConfig:
     from configparser import ConfigParser
 
     config = ConfigParser()
@@ -22,13 +24,16 @@ def read_ini(filenames: List[str]) -> AppConfig:
                 user=config["MongoDb"]["CredentialsUser"],
                 pwd=config["MongoDb"]["CredentialsPwd"]
             ),
-            collections=[name.strip() for name in config["MongoDb"]["Collections"].split(",")]
+            collections=[
+                name.strip()
+                for name in config["MongoDb"]["Collections"].split(",")
+            ]
         ),
         models=Models(path=config["Models"]["path"])
     )
 
 
-def read_json(filenames: List[str]) -> AppConfig:
+def read_json(filenames: Sequence[str]) -> AppConfig:
     from json import loads
 
     def readFile(filename) -> dict:
@@ -49,7 +54,8 @@ def read_json(filenames: List[str]) -> AppConfig:
         models=Models(path=config["Models"]["path"])
     )
 
-def read_yaml(filenames: List[str]) -> AppConfig:
+
+def read_yaml(filenames: Sequence[str]) -> AppConfig:
     config = merge_confs(filenames, default=None)
 
     return AppConfig(
@@ -64,26 +70,37 @@ def read_yaml(filenames: List[str]) -> AppConfig:
         models=Models(path=config["Models"]["path"])
     )
 
-def read_yaml_enhanced(filenames):
-    from cgnal.config.yaml.domain import AppConfig
+
+def read_yaml_enhanced(filenames: Sequence[str]):
+    from cgnal.config.yaml.domain import AppConfig as EnhancedAppConfig
 
     config = merge_confs(filenames, default=None)
 
     logger.info(f"Type of configuration: {config['MongoDb']}")
 
-    return AppConfig(mongoDb=config["MongoDb"], models=config["Models"])
+    return EnhancedAppConfig(
+        mongoDb=config["MongoDb"], models=config["Models"]
+    )
 
 
 if __name__ == "__main__":
-    from confs.python.dev import dataConfig
+    from confs.python.dev import dataConfig  # type: ignore
 
-    # dataConfig = read_ini(['confs/ini/dev.ini', 'confs/ini/credentials.ini'])
+    # dataConfig = read_ini(
+    #     ['confs/ini/dev.ini', 'confs/ini/credentials.ini']
+    # )
 
-    # dataConfig = read_json(['confs/json/dev.json', 'confs/json/credentials.json'])
+    # dataConfig = read_json(
+    #     ['confs/json/dev.json', 'confs/json/credentials.json']
+    # )
 
-    # dataConfig = read_yaml(['confs/yaml/dev.yml', 'confs/yaml/credentials.yml'])
+    # dataConfig = read_yaml(
+    #     ['confs/yaml/dev.yml', 'confs/yaml/credentials.yml']
+    # )
 
-    # dataConfig = read_yaml_enhanced(['confs/yaml/dev_enhanced.yml'])
+    # dataConfig = read_yaml_enhanced(
+    #     ['confs/yaml/dev_enhanced.yml']
+    # )
 
     logger.info(f"The mongoDb host is: {dataConfig.mongoDb.host}")
 
