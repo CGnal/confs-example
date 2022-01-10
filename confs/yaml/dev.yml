@@ -12,3 +12,6 @@ MongoDb:
   collections:
     - users
     - transactions
+
+
+

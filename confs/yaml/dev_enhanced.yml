@@ -12,3 +12,6 @@ MongoDb: !!python/object:cgnal.config.yaml.domain.MongoDb
   collections:
     - users
     - transactions
+
+
+

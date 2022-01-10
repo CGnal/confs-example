@@ -12,35 +12,17 @@ Exercise
 ========
 
 Start by looking and the code and try running the `run.py` script to get 
-familiar with the kind of logs that gets generated. The logging behaviour is 
-controlled using the `logging.yaml` provided. 
+familiar with the configuration and how the information gets read from the files. 
 
-1. Try to change the logging level for the root logger (and/or the handler) 
-   to investigate the behaviour. After playing a bit around, reset the 
-   `logging.yaml` to its original form using 
-   
-        $ git checkout logging.yaml
+**Task**
 
-   Why when you set the logging level of the handler to `DEBUG`, you don't 
-   get the `DEBUG` logs as you would expect? Try to fix the file such that you 
-   can get the `DEBUG` logs, as expected. 
+1. Once you feel quite confident about the code, try to add a new parameter to the 
+   configurations. In particular, we want to be able to customize the Mongo database name 
+   via configuration files. Do the needed implementation for the different types of 
+   configurations in order to include this extra parameter.
 
-2. Sometimes we want to increase the logging only in certain modules, 
-   submodules and/or classes. In this exercise, you have to set the 
-   logging.yaml file such that you only get DEBUG logs in the `stats` 
-   submodules, whereas all the rest is set to INFO.
-    
-3. However, you soon realize that the DEBUG logs outputs too many things 
-   sometimes. You therefore realize that a better choice for your need 
-   would be to keep the level at INFO when things get outputted to the 
-   console, while emitting the DEBUG logs (of the process module) to 
-   a dedicated file.
-   
-4. Since the file will be processed by a dedicated tool (e.g. Logstash),
-   the output in the file should conform to the following format:
-   
-    ` %(asctime)s - %(levelname)s - [%(name)s] - [%(module)s] - %(funcName)s() - %(message)s` 
-   
-    where dates follow this format
-   
-    ` %Y-%m-%d %H:%M:%S `
+2. When you feel at ease with adding new keys to the configuration files, try to 
+   increase a bit complexity by adding new sections (when possible). 
+   In order to do so, imagine that  in the model specification you want to add two subsections: 
+   - training, where to specify the path for saving trained models
+   - prediction, where to specify the path of the model to be used in prediction steps
