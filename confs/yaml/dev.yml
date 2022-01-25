@@ -1,7 +1,7 @@
-Models:
+models:
   path: "/this/is/the/path/to/model"
 
-MongoDb:
+mongoDb:
   host: !!str "localhost"
   port: !!int 27017
 

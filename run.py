@@ -44,31 +44,22 @@ def read_json(filenames: Sequence[str]) -> AppConfig:
 
     return AppConfig(
         mongoDb=MongoDb(
-            host=config["MongoDb"]["host"], port=config["MongoDb"]["port"],
+            host=config["mongoDb"]["host"], port=config["mongoDb"]["port"],
             credentials=Credentials(
-                user=config["MongoDb"]["credentials"]["user"],
-                pwd=config["MongoDb"]["credentials"]["pwd"]
+                user=config["mongoDb"]["credentials"]["user"],
+                pwd=config["mongoDb"]["credentials"]["pwd"]
             ),
-            collections=config["MongoDb"]["collections"]
+            collections=config["mongoDb"]["collections"]
         ),
-        models=Models(path=config["Models"]["path"])
+        models=Models(path=config["models"]["path"])
     )
+    # return AppConfig(**config)
 
 
 def read_yaml(filenames: Sequence[str]) -> AppConfig:
     config = merge_confs(filenames, default=None)
 
-    return AppConfig(
-        mongoDb=MongoDb(
-            host=config["MongoDb"]["host"], port=config["MongoDb"]["port"],
-            credentials=Credentials(
-                user=config["MongoDb"]["credentials"]["user"],
-                pwd=config["MongoDb"]["credentials"]["pwd"]
-            ),
-            collections=config["MongoDb"]["collections"]
-        ),
-        models=Models(path=config["Models"]["path"])
-    )
+    return AppConfig(**config)
 
 
 def read_yaml_enhanced(filenames: Sequence[str]):
@@ -76,10 +67,10 @@ def read_yaml_enhanced(filenames: Sequence[str]):
 
     config = merge_confs(filenames, default=None)
 
-    logger.info(f"Type of configuration: {config['MongoDb']}")
+    logger.info(f"Type of configuration: {config['mongoDb']}")
 
     return EnhancedAppConfig(
-        mongoDb=config["MongoDb"], models=config["Models"]
+        mongoDb=config["mongoDb"], models=config["models"]
     )
 
 

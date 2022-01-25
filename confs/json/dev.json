@@ -1,8 +1,8 @@
 {
-  "Models": {
+  "models": {
     "path": "/this/is/the/path/to/model"
   },
-  "MongoDb": {
+  "mongoDb": {
     "host": "localhost",
     "port": 27017,
     "credentials": {

@@ -1,7 +1,7 @@
-Models: !!python/object:cgnal.config.yaml.domain.Models
+models: !!python/object:cgnal.config.yaml.domain.Models
   path: !joinPath ["this", "is", "the", "path","to","model"]
 
-MongoDb: !!python/object:cgnal.config.yaml.domain.MongoDb
+mongoDb: !!python/object:cgnal.config.yaml.domain.MongoDb
   host: !!str "localhost"
   port: !!int 27017
 

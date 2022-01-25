@@ -5,7 +5,7 @@ from pydantic import BaseModel
 from cgnal.config import PathLike
 
 
-# class Credentials(BaseModel):
+# class Credentials:
 #     def __init__(self, user: str, pwd: str):
 #         self.user = user
 #         self.pwd = pwd
